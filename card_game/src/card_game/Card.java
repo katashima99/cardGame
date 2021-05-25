@@ -64,9 +64,19 @@ public class Card {
 	}
 	
 	//ジョーカー追加
-	
 	public static Card addJoker() {
 		return new Card(0,14);
+	}
+	
+	//カードを比較する
+	public int compareTo(Card anotherCard) {
+		if(this.num == anotherCard.num ) {
+			return 0;
+		} else if(this.num > anotherCard.num) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 }

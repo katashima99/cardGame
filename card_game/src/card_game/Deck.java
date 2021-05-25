@@ -40,9 +40,12 @@ public class Deck {
 	
 	//カードを置く
 	public void put(Card card) {
+		//54枚以下の時に
 		if(cards.size() < 55) {
-			int total = cards.size();
-			cards.add(card);			
+			//同じカードがないか判定
+			if(!cards.contains(card)) {
+				cards.add(card);							
+			}
 		}
 	}
 
