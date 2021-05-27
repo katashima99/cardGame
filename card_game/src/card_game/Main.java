@@ -15,7 +15,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		// 処理を選ばせる
 		System.out.println("実行する処理を選んでください。");
-		System.out.println("1:山札からドローする　2：カードの強さを比較する 3:カードを5枚引いて一番強いカードを表示する");
+		System.out.println("1:山札からドローする　2：カードの強さを比較する 3:カードを5枚引いて一番強いカードを表示する 4:ペアを作る");
 		int select = scanner.nextInt();
 
 		switch (select) {
@@ -77,11 +77,19 @@ public class Main {
 			System.out.println("カードを戻して、もう一度引く");
 			System.out.println(card.getMark() + card.getNum());
 			break;
+			
+		case 4: //ペアを取得するゲーム
+			//5枚カードを所持したプレーヤー
+			Player p = new Player(deck,5);
+			
 
+			break;
+			
 		default:
 			System.out.println("無効な番号です。");
 			break;
 
 		}
+		
 	}
 }
