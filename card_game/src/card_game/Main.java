@@ -81,7 +81,18 @@ public class Main {
 		case 4: //ペアを取得するゲーム
 			//5枚カードを所持したプレーヤー
 			Player p = new Player(deck,5);
-			
+			//ワンペアメソッド
+			int pair = p.isOnePair();
+			//ツーペアメソッド
+			p.isTwoPair(pair);
+	
+			if(pair == 1) {
+				System.out.println("ワンペアです");		
+			}else if(p.isTwoPair(pair) == true) {
+				System.out.println("ツーペアです");				
+			}else {
+				System.out.println("ノーペアです");				
+			}
 
 			break;
 			
