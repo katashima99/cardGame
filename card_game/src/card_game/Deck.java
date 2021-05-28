@@ -28,26 +28,21 @@ public class Deck {
 	public Card draw() {
 		Card card = null;
 		if (cards.size() > 0) {
-			//山札から1枚引く
+			// 山札から1枚引く
 			int i = cards.size() - 1;
-			//要素を取り出す
-			card = cards.get(i);
-			//要素を削除
-			cards.remove(i);
+			// 要素を削除
+			card = cards.remove(i);
 		}
 		return card;
 	}
-	
-	//カードを置く
+
+	// カードを置く
 	public void put(Card card) {
-		//54枚以下の時に
-		if(cards.size() < 55) {
-			//同じカードがないか判定
-			if(!cards.contains(card)) {
-				cards.add(card);							
-			}
+		// 54枚以下の時に
+		// 同じカードがないか判定
+		if (cards.size() < 55 && !cards.contains(card)) {
+			cards.add(card);
 		}
 	}
 
-	
 }

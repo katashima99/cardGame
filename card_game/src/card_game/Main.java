@@ -1,7 +1,6 @@
 package card_game;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +14,10 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		// 処理を選ばせる
 		System.out.println("実行する処理を選んでください。");
-		System.out.println("1:山札からドローする　2：カードの強さを比較する 3:カードを5枚引いて一番強いカードを表示する 4:ペアを作る");
+		System.out.println("1:山札からドローする　"
+						+ "2：カードの強さを比較する "
+						+ "3:カードを5枚引いて一番強いカードを表示する"
+						+ " 4:ペアを作る");
 		int select = scanner.nextInt();
 
 		switch (select) {
@@ -81,26 +83,50 @@ public class Main {
 		case 4: //ペアを取得するゲーム
 			//5枚カードを所持したプレーヤー
 			Player p = new Player(deck,5);
+			System.out.print(" ");
 			//ワンペアメソッド
 			int pair = p.isOnePair();
 			//ツーペアメソッド
 			p.isTwoPair(pair);
-	
-			if(pair == 1) {
-				System.out.println("ワンペアです");		
-			}else if(p.isTwoPair(pair) == true) {
-				System.out.println("ツーペアです");				
-			}else {
-				System.out.println("ノーペアです");				
+			//ペアのプリント文
+			judg(p,pair);
+			
+			//カードチェンジする番号を入力
+			System.out.println("-----------------------");
+			System.out.print("交換する手札番号をを入力してください[1-5]：");
+			int cardIndex = scanner.nextInt();
+			System.out.println("-----------------------");
+			System.out.println("変更する手札");
+			//カードチェンジメソッド
+			p.changeCard(cardIndex, deck);
+			System.out.println("-----------------------");
+			System.out.println("変更後の手札");
+			for(int a = 0; a<p.hand.size(); a++) {
+				System.out.print(p.hand.get(a).getMark() + p.hand.get(a).getNum() + " ");				
 			}
-
+			
+			//ワンペアメソッド
+			pair = p.isOnePair();
+			//ツーペアメソッド
+			p.isTwoPair(pair);
+			//ペアのプリント文
+			judg(p,pair);
 			break;
 			
 		default:
 			System.out.println("無効な番号です。");
 			break;
-
 		}
-		
+	}
+	
+	//ペアのプリント文
+	public static void judg(Player p, int pair) {
+		if(pair == 1) {
+			System.out.println(": ワンペアです");		
+		}else if(p.isTwoPair(pair) == true) {
+			System.out.println(": ツーペアです");				
+		}else {
+			System.out.println(": ノーペアです");				
+		}
 	}
 }
