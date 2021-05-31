@@ -40,15 +40,13 @@ public class Main {
 			System.out.println("2枚目" + card2.getMark() + card2.getNum());
 
 			System.out.println("-----------------------");
-			int compare = card1.compareTo(card2);
+			int compare = card1.fight(card2);
 
 			if (compare > 0) {
 				System.out.println("1枚目" + card1.getMark() + card1.getNum() + "の勝ちです。");
-			} else if (compare < 0) {
-				System.out.println("2枚目" + card2.getMark() + card2.getNum() + "の勝ちです。");
 			} else {
-				System.out.println("引き分けです。");
-			}
+				System.out.println("2枚目" + card2.getMark() + card2.getNum() + "の勝ちです。");
+			} 
 			break;
 
 		case 3: // カードを5枚引いて、一番強いカードを取得
@@ -66,7 +64,7 @@ public class Main {
 				System.out.println(card.getMark() + card.getNum());
 				hands.add(card); // listに持たせる
 				// 強いカードを比較
-				compare = maxCard.compareTo(hands.get(i));
+				compare = maxCard.fight(hands.get(i));
 				if (compare <= 0) {
 					maxCard = hands.get(i);
 				}
@@ -83,7 +81,6 @@ public class Main {
 		case 4: //ペアを取得するゲーム
 			//5枚カードを所持したプレーヤー
 			Player p = new Player(deck,5);
-			System.out.print(" ");
 			//ワンペアメソッド
 			int pair = p.isOnePair();
 			//ツーペアメソッド
@@ -112,7 +109,6 @@ public class Main {
 			//ペアのプリント文
 			judg(p,pair);
 			break;
-			
 		default:
 			System.out.println("無効な番号です。");
 			break;

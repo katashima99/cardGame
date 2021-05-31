@@ -7,6 +7,8 @@ public class Card {
 	private int mark;
 	// カードの番号
 	private int num;
+	//カードパワー
+	private int power;
 
 	// カード コンストラクタ
 	public Card(int mark, int num) {
@@ -45,13 +47,13 @@ public class Card {
 		String str;
 		switch (mark) {
 			case 1:
-				str = "♥";
-				break;
-			case 2:
 				str = "♣";
 				break;
-			case 3:
+			case 2:
 				str = "♦";
+				break;
+			case 3:
+				str = "♥";
 				break;
 			case 4:
 				str = "♠";
@@ -65,18 +67,40 @@ public class Card {
 	
 	//ジョーカー追加
 	public static Card addJoker() {
-		return new Card(0,14);
+		return new Card(5,14);
 	}
 	
 	//カードを比較する
-	public int compareTo(Card anotherCard) {
-		if(this.num == anotherCard.num ) {
-			return 0;
-		} else if(this.num > anotherCard.num) {
+		public int compareTo(Card anotherCard) {
+			if(this.num == anotherCard.num ) {
+				return 0;
+			} else if(this.num > anotherCard.num) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
+	
+	//カードを比較する(パワーで比較)
+	public int fight(Card anotherCard) {
+		if(power() > anotherCard.power()) {
 			return 1;
 		} else {
 			return -1;
+		} 
+	}
+	
+	//カードパワー
+	public int power() {
+		if(mark == 5 && num == 14) {
+			power = 15;
+		}else if (num == 1) {
+			power = 14;
+		}else {
+			power = num;
 		}
+		power += power*10 + mark;
+		return power;
 	}
 
 }
